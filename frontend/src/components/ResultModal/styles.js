@@ -11,8 +11,8 @@ export const ModalBackground = styled.div`
 `;
 
 export const Container = styled.div`
-  width: 40%;
-  height: 60%;
+  width: 70%;
+  height: 90%;
   border-radius: 12px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -40,17 +40,14 @@ export const TitleCloseBtn = styled.div`
 `;
 
 export const Body = styled.div`
-  flex: 50%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 80%;
+  width: 80%;
+  flex-direction: column;
+  align-self: center;
   font-size: 1.3rem;
   text-align: center;
   overflow: auto;
-
-  p {
-    height: 300px;
-  }
 `;
 
 export const Footer = styled.div`
