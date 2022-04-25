@@ -1,8 +1,7 @@
 import { VectorMap } from '@south-paw/react-vector-maps';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import BrMap from './map/brMap';
 import { Container, Map, MapContainer } from './styles';
-import Solution from './graph/Solution';
 import Sidebar from './components/SideBar';
 import ReasultModal from './components/ResultModal';
 

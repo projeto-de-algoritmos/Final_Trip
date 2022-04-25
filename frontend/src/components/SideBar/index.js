@@ -7,7 +7,7 @@ const Sidebar = ({ starting, setStarting, destiny, setDestiny, openModal}) => {
   return(
     <Contianer>
       <LogoContainer>
-        {/* <Logo src={logo} alt="Logo de um caminhão"/> */}
+        <Logo src={logo} alt="Logo de um motorhome"/>
         <Text>Trip</Text>
       </LogoContainer>
       <LocalContainer>

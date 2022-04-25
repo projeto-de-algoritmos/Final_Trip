@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
-import { Body, Container, Footer, ModalBackground, TitleCloseBtn } from './styles';
+import { 
+  Body, Container, Footer, ModalBackground, TitleCloseBtn,
+  SliderContainer,
+} from './styles';
 import api from '../../services/api';
 import Slider from '@mui/material/Slider';
+import TouristPoint from '../TouristPoint';
 
 const ReasultModal = ({ visible, setVisible, starting, destiny}) => {
 
@@ -9,7 +13,7 @@ const ReasultModal = ({ visible, setVisible, starting, destiny}) => {
   const [fun, setFun] = useState(5); 
   const [nature, setNature] = useState(5);
   const [loading, setLoading] = useState(false);
-  const [recomendations, setRecomendation] = useState([]);
+  const [recomendations, setRecomendations] = useState([]);
 
   const handleChangeCulture = (event, newValue) => {
     setCulture(newValue);
@@ -24,6 +28,7 @@ const ReasultModal = ({ visible, setVisible, starting, destiny}) => {
   };
 
   const getReacomendation = async () => {
+    setLoading(true);
     let arr = [
       {id: 1, value: culture },
       {id: 2, value: nature},
@@ -37,8 +42,15 @@ const ReasultModal = ({ visible, setVisible, starting, destiny}) => {
     }
 
     await api.post('recomendation', data)
-      .then(({data}) => console.log(data))
-      .catch(() => alert('Ocorreu um erro ao tentar gerar a recomendação')) 
+      .then(({data}) => {
+        console.log(data)
+        setRecomendations(data.recomendation)
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+        alert('Ocorreu um erro ao tentar gerar a recomendação')
+      }) 
   }
 
   const renderForm = () => (
@@ -51,7 +63,7 @@ const ReasultModal = ({ visible, setVisible, starting, destiny}) => {
       <p>
         Cultura
       </p>
-      <div style={{width: '80%', alignSelf: 'center'}}>
+      <SliderContainer>
         <Slider
           aria-label="Cultura"
           onChange={handleChangeCulture}
@@ -62,11 +74,11 @@ const ReasultModal = ({ visible, setVisible, starting, destiny}) => {
           min={0}
           max={10}
         />
-      </div>
+      </SliderContainer>
       <p>
         Diversão
       </p>
-      <div style={{width: '80%', alignSelf: 'center'}}>
+      <SliderContainer>
         <Slider
           aria-label="Diversão"
           onChange={handleChangeFun}
@@ -77,11 +89,11 @@ const ReasultModal = ({ visible, setVisible, starting, destiny}) => {
           min={0}
           max={10}
         />
-      </div>
+      </SliderContainer>
       <p>
         Natureza
       </p>
-      <div style={{width: '80%', alignSelf: 'center'}}>
+      <SliderContainer>
         <Slider
           aria-label="Natureza"
           onChange={handleChangeNature}
@@ -92,9 +104,20 @@ const ReasultModal = ({ visible, setVisible, starting, destiny}) => {
           min={0}
           max={10}
         />
-      </div>
+      </SliderContainer>
     </Body>
   );
+
+  const renderRecomendation = () => (
+    <Body>
+      {recomendations.map((item) => 
+        <TouristPoint 
+          item={item}
+          key={item.id}
+        />
+    ) }
+    </Body>
+  )
 
   return(
     <ModalBackground>
@@ -109,7 +132,7 @@ const ReasultModal = ({ visible, setVisible, starting, destiny}) => {
           </button>
         </TitleCloseBtn>
         <h1>Recomendações de pontos turísticos</h1>
-        {renderForm()}
+        {recomendations.length === 0 ? renderForm(): renderRecomendation()}
         <Footer>
           <button onClick={() => getReacomendation()}>
             Recomendar

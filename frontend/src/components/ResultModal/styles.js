@@ -68,3 +68,8 @@ export const Footer = styled.div`
     cursor: pointer;
   }
 `;
+
+export const SliderContainer = styled.div`
+  width: 80%;
+  align-self: center;
+`;
