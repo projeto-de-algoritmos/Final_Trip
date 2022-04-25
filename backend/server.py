@@ -4,6 +4,7 @@ from flask import Flask, request
 from flask_cors import CORS
 from countries import countries
 from tourist_attraction import tourist_attraction
+import graph
 
 app = Flask(__name__)
 CORS(app)
@@ -19,7 +20,8 @@ def recomendation():
     destiny = countries[data['destiny']]
     user_rank = data['recomendation']
 
-    return {'recomendation': [tourist_attraction[origin][0]]}
+    result = graph.calculate(origin, destiny, user_rank)
+    return {'result': result}
 
 if __name__ == "__main__":
     app.run()

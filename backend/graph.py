@@ -1,3 +1,22 @@
+import collections
+
+from tourist_attraction import tourist_attraction
+
+def mergeSortInversions(nums, left, right):
+    if left >= right:
+        return 0
+    
+    inversions_count = 0
+    
+    mid = (right + left) // 2
+    
+    inversions_count += mergeSortInversions(nums, left, mid)
+    inversions_count += mergeSortInversions(nums, mid+1, right)
+    
+    inversions_count += merge(nums, left, mid, right)
+    
+    return inversions_count
+
 def merge(nums, left, mid, right):
     index_helper = 0
     index1 = left
@@ -52,7 +71,9 @@ def calculate_recommendation(country, user_characteristics):
         
     return answer
     
-def calculate():
+def calculate(source, target, user_characteristics):
+        user_characteristics = {int(k):int(v) for k,v in user_characteristics.items()}
+
         graph = {}
         graph['Argentina'] = [ ['Paraguai', 1042], ['Bolivia', 2236], ['Chile', 1138], ['Uruguai', 206]]
         graph['Uruguai'] = [['Brasil', 2280], ['Argentina', 206]]
@@ -67,14 +88,12 @@ def calculate():
         graph['Guiana Francesa'] = [['Brasil', 2355], ['Suriname', 337]]
         graph['Paraguai'] = [['Brasil', 1458], ['Bolivia', 1466], ['Argentina', 1042]]
         graph['Brasil'] = [['Uruguai', 2280], ['Paraguai', 1458], ['Bolivia', 2162], ['Peru', 3172], ['Colombia', 3675], ['Venezuela', 3595], ['Guiana', 2756], ['Suriname', 2539], ['Guiana Francesa', 2355]]
-        
-        src = 'Brasil'
-        target = 'Equador'
 
+        print(source, target, user_characteristics)
+        
         dist = collections.defaultdict(lambda: float('infinity'))
-        dist[src] = 0
+        dist[source] = 0
         prev = {}
-        user_characteristics = {1: 2, 2: 3, 3: 1}
         
         for _ in range(14):
             _dist = dist.copy()
@@ -91,13 +110,14 @@ def calculate():
         key = target
         
         recommended_place = calculate_recommendation(target, user_characteristics)
-        result.append(recommended_place)
+        result.append([key, recommended_place])
         
         while key in prev:
-            if prev[key] == src: break
+            if prev[key] == source: break
                 
             recommended_place = calculate_recommendation(prev[key], user_characteristics)
-            result.append(recommended_place)
+            result.append([prev[key], recommended_place])
             key = prev[key]
         
+        print("result: ", result)
         return result
