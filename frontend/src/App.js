@@ -9,7 +9,6 @@ import ReasultModal from './components/ResultModal';
 const App = () => {
 
   const [focused, setFocused] = useState('None');
-  const [output, setOutput] = useState('None');
   const [starting, setStarting] = useState('None');
   const [destiny, setDestiny] = useState('None');
   const [modal, setModal] = useState(false);
@@ -30,33 +29,28 @@ const App = () => {
     }
   };
 
-  useEffect(() => {
-    if(starting === 'None' && destiny === 'None'){
-      setOutput('Selecione os estados');
+  const openModal = () => {
+    if(starting === 'None' || destiny === 'None'){
+      alert('Selecione os países');
       return;
     }
-    if (starting && destiny) {
-      try {
-        const result = Solution.question(starting, destiny);
-        setOutput(result);
-      } catch {}
-    }
-
-  }, [starting, destiny]);
+    setModal(true);
+  }
 
   return (
     <Container>
       {modal && <ReasultModal 
         visible={modal}
         setVisible={setModal}
-        output={output}
+        starting={starting}
+        destiny={destiny}
       />}
       <Sidebar
         starting={starting}
         setStarting={setStarting}
         destiny={destiny}
         setDestiny={setDestiny}
-        openModal={() => setModal(true)}
+        openModal={openModal}
       />
       <MapContainer>
         <Map>

@@ -10,5 +10,11 @@ CORS(app)
 def hello():
     return 'Hello World!'
 
+@app.route('/recomendation', methods=['POST'])
+def recomendation():
+    print(request.json)
+    return { 'message': 'success'}
+
+
 if __name__ == "__main__":
     app.run()

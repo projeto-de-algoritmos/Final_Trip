@@ -61,7 +61,7 @@ export const Footer = styled.div`
     height: 45px;
     margin: 10px;
     border: none;
-    background-color: crimson;
+    background-color: dodgerBlue;
     color: white;
     border-radius: 8px;
     font-size: 20px;
