@@ -15,6 +15,11 @@ const ReasultModal = ({ visible, setVisible, starting, destiny}) => {
   const [loading, setLoading] = useState(false);
   const [recomendations, setRecomendations] = useState([]);
 
+  const closeModal = () => {
+    setRecomendations([]);
+    setVisible(false);
+  }
+
   const handleChangeCulture = (event, newValue) => {
     setCulture(newValue);
   };
@@ -44,7 +49,7 @@ const ReasultModal = ({ visible, setVisible, starting, destiny}) => {
     await api.post('recomendation', data)
       .then(({data}) => {
         console.log(data)
-        setRecomendations(data.recomendation)
+        setRecomendations(data.result)
         setLoading(false);
       })
       .catch(() => {
@@ -112,7 +117,8 @@ const ReasultModal = ({ visible, setVisible, starting, destiny}) => {
     <Body>
       {recomendations.map((item) => 
         <TouristPoint 
-          item={item}
+          location={item[0]}
+          item={item[1]}
           key={item.id}
         />
     ) }
@@ -125,7 +131,7 @@ const ReasultModal = ({ visible, setVisible, starting, destiny}) => {
         <TitleCloseBtn>
         <button
             onClick={() => {
-              setVisible(false);
+              closeModal();
             }}
           >
             X
@@ -133,11 +139,11 @@ const ReasultModal = ({ visible, setVisible, starting, destiny}) => {
         </TitleCloseBtn>
         <h1>Recomendações de pontos turísticos</h1>
         {recomendations.length === 0 ? renderForm(): renderRecomendation()}
-        <Footer>
+        {recomendations.length === 0 && <Footer>
           <button onClick={() => getReacomendation()}>
             Recomendar
           </button>
-        </Footer>
+        </Footer>}
       </Container>
     </ModalBackground>
   );

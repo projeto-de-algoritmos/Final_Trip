@@ -1,13 +1,15 @@
 import React from 'react';
 import { PointContainer, Image, Container, Separator } from './styles'
 
-const TouristPoint = ({ item }) => {
+const TouristPoint = ({ item, location}) => {
   return (
     <Container>
-      <h2>{item.name}</h2>
+      <h2>{item.name} - {location}</h2>
       <PointContainer>
         <Image src={item.image} alt="Imagem do ponto turistico"/>
-        <h4>{item.desc}</h4>
+        <div style={{width: '80%'}}>
+          <p>{item.desc}</p>
+        </div>
       </PointContainer>
       <Separator />
     </Container>

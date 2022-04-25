@@ -10,11 +10,17 @@ export const PointContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  p {
+    color: black;
+    font-weight: 400;
+  }
 `;
 
 export const Image = styled.img`
   width: 50%;
   border-radius: 15px;
+  margin-right: 10px;
 `;
 
 export const Separator = styled.div`
