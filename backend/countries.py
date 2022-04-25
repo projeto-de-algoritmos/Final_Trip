@@ -1,0 +1,15 @@
+countries = {
+    "ar": "Argentina",
+    "bo": "Bolivia",
+    "br": "Brasil",
+    "cl": "Chile",
+    "co": "Colombia",
+    "ec": "Equador",
+    "gf": "Guiana Francesa",
+    "gy": "Guiana",
+    "pe": "Peru",
+    "py": "Paraguai",
+    "sr": "Suriname",
+    "uy": "Uruguai",
+    "ve": "Venezuela",
+}
