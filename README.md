@@ -6,16 +6,18 @@
 ## Alunos
 |Matrícula | Aluno |
 | -- | -- |
-|  16/0120918 |  Gabriel de Jesus Carvalho |
+| 16/0120918 |  Gabriel de Jesus Carvalho |
 | 18/0054554  |  	Paulo Batista |
 
 ## Sobre 
 Final Trip é um sistema de viagem que contêm todos os países da América do Sul,  o sistem também é responsável por calcular o menor caminho passando entre as capitais até chegar o destino final. Fora isso, para cada país visitado, o sistema também recomenda atrações turísticas baseadas na preferências do usuário.
 
 ## Screenshots
-![home](./doc/home.png)
-![games](./doc/games.png)
-![recomendation](./doc/recomendation.png)
+![image](./doc/img01.png)
+![image](./doc/img02.png)
+![image](./doc/img03.png)
+![image](./doc/img04.png)
+
 
 ## Instalação 
 **Linguagem**: Python e JavaScript<br>
@@ -45,12 +47,14 @@ yarn start
 
 
 ## Uso 
-Selecionar os países que deseja viajar.
+Selecione os países que deseja viajar, clique no botão rotas, depois escolha as características que você prefere e receba as suas recomendações.
 
 ## Outros 
-Para calcular o menor caminho o algoritmo Djikstra é utilizado. E o cálculo da recomendação para o usuário a partir de suas preferências é feito utilizando o algoritmo de inversão.
+Para calcular o menor caminho o algoritmo Bellman-Ford é utilizado. E o cálculo da recomendação para o usuário a partir de suas preferências é feito utilizando o algoritmo de contagem de inversões.
 
-Cada local turístico possui uma série de características que são organizadas por relevância.
+Cada local turístico possui uma série de características que são organizadas por relevância. Algumas dessas características podem ser vistas na imagem abaixo.
 
-![games1](./doc/games1.png)
-![games2](./doc/games2.png)
+![image](./doc/img05.png)
+
+
+
