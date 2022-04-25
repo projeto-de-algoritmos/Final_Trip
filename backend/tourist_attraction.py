@@ -207,7 +207,7 @@ tourist_attraction = {
     },
 
   ],
-  'Guiana': [{
+  'Guiana': [
     {
       'id': 27,
       'name': 'Promenade Gardens',
@@ -229,7 +229,7 @@ tourist_attraction = {
       'image': 'https://upload.wikimedia.org/wikipedia/commons/3/39/Georgetown-Lighthouse.jpg',
       'characteristics': {1: 3, 2: 2, 3: 1},
     },
-  }],
+  ],
   'Suriname': [
     {
       'id': 30,
